@@ -108,7 +108,7 @@ type (
 // 通过access_token和userid获取用户的信息
 const USERGET = "https://oapi.dingtalk.com/user/get?access_token=%s&userid=%s"
 
-func GetUser(accessToken, userid string) (user User, err error) {
+func GetUser(accessToken, userid string) (user *User, err error) {
 	type Result struct {
 		RespResult
 		User
@@ -136,23 +136,23 @@ func GetUser(accessToken, userid string) (user User, err error) {
 		return
 	}
 	log.Println(result)
-	//user = &User{
-	//	Name:            result.Name,
-	//	Unionid:         result.Unionid,
-	//	Userid:          result.Userid,
-	//	IsLeaderInDepts: result.IsLeaderInDepts,
-	//	IsBoss:          result.IsBoss,
-	//	HiredDate:       result.HiredDate,
-	//	IsSenior:        result.IsSenior,
-	//	Department:      result.Department,
-	//	OrderInDepts:    result.OrderInDepts,
-	//	Active:          result.Active,
-	//	Avatar:          result.Avatar,
-	//	IsAdmin:         result.IsAdmin,
-	//	IsHide:          result.IsHide,
-	//	Jobnumber:       result.Jobnumber,
-	//	Position:        result.Position,
-	//	Roles:           result.Roles,
-	//}
+	user = &User{
+		Name:            result.Name,
+		Unionid:         result.Unionid,
+		Userid:          result.Userid,
+		IsLeaderInDepts: result.IsLeaderInDepts,
+		IsBoss:          result.IsBoss,
+		HiredDate:       result.HiredDate,
+		IsSenior:        result.IsSenior,
+		Department:      result.Department,
+		OrderInDepts:    result.OrderInDepts,
+		Active:          result.Active,
+		Avatar:          result.Avatar,
+		IsAdmin:         result.IsAdmin,
+		IsHide:          result.IsHide,
+		Jobnumber:       result.Jobnumber,
+		Position:        result.Position,
+		Roles:           result.Roles,
+	}
 	return
 }

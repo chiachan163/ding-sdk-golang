@@ -20,7 +20,7 @@ func main() {
 	log.Println("access_token: ", accessToken)
 
 	// 免登授权码
-	code := "88295d3b19733941848b96cdbf32885f"
+	code := "f4196a7cd6e73908ab010ee5bc3b379a"
 	userinfo, err := ding_sdk_golang.Getuserinfo(accessToken, code)
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetCorpToken error, err : %v", err)
@@ -30,5 +30,5 @@ func main() {
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetCorpToken error, err : %v", err)
 	}
-	log.Println(user)
+	log.Println(user.Name)
 }
