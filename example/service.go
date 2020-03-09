@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	const CORPID = "ding772ad001364d04a2bc961a6cb783455b"
-	suiteAccessToken, err := ding_sdk_golang.GetSuiteToken("suitexiso0q2p5rxt3nr3", "kws8FIiNgFS2E0GD1CjQOfrD0uMJ9kO_bYs2JryR5GZU8Lm85xyMeX7YmHYjqAyZ", "")
+	const CORPID = "xxx"
+	suiteAccessToken, err := ding_sdk_golang.GetSuiteToken("xxx", "xxx", "")
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetSuiteToken error, err : %v", err)
 	}
