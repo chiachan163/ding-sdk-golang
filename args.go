@@ -38,6 +38,8 @@ const (
 	USERGETTADMINSCOPR = DINGTALK + "/topapi/user/get_admin_scope?access_token=%s&userid=%s"
 	// 获取企业员工人数
 	USERGETORGUSERCOUNT = DINGTALK + "/user/get_org_user_count?access_token=%s&onlyActive=%d"
+	// 获取部门用户详情
+	USERLISTBYPAGE = DINGTALK + "/user/listbypage?access_token=%s&department_id=%d&offset=%d&size=%d&orde=%s&lane=%s"
 )
 
 // 通讯录管理-部门管理

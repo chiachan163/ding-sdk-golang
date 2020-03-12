@@ -12,6 +12,8 @@
 ### 获取登录身份
 - 获取用户userid 
     - /user/getuserinfo
+
+### 通讯录管理-用户管理
 - 获取管理员的微应用管理权限 
     - /user/can_access_microapp
 - 根据部门id获取员工ID列表 
@@ -24,8 +26,9 @@
     - /topapi/user/get_admin_scope
 - 获取企业员工人数 
     - /user/get_org_user_count
+- 获取部门用户详情 
+    - /user/listbypage
 
-### 通讯录管理-用户管理
 ### 通讯录管理-部门管理
 ### 通讯录管理-角色管理
 ### 通讯录管理-外部联系人
