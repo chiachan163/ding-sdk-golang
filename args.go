@@ -50,6 +50,8 @@ const (
 	DEPARTMENTGET = DINGTALK + "/department/get?access_token=%s&id=%d"
 	// 获取部门列表
 	DEPARTMENTLIST = DINGTALK + "/department/list?access_token=%s"
+	// 获取子部门ID列表
+	DEPARTMENTLISTIDS = DINGTALK + "/department/list_ids?access_token=%s&id=%d"
 )
 
 // 通讯录管理-角色管理

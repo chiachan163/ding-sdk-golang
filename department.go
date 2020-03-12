@@ -97,7 +97,7 @@ type SimpleDepartment struct {
 	Ext string `json:"ext"`
 }
 
-// 获取部门详情
+// 获取部门列表
 func DepartmentList(accessToken string, id *int64, lang *string, fetchChild *bool) (department []*SimpleDepartment, err error) {
 	// ISV微应用固定传递false
 	type Result struct {
@@ -138,5 +138,39 @@ func DepartmentList(accessToken string, id *int64, lang *string, fetchChild *boo
 	}
 	log.Println(result)
 	department = result.Department
+	return
+}
+
+// 获取子部门ID列表
+func DepartmentListIds(accessToken string, id int64) (subDeptIdList []int64, err error) {
+	// ISV微应用固定传递false
+	type Result struct {
+		RespResult
+		SubDeptIdList []int64 `json:"sub_dept_id_list"`
+	}
+	var result Result
+	resp, err := ghttp.Request{
+		Url:         fmt.Sprintf(DEPARTMENTLISTIDS, accessToken, id),
+		Body:        nil,
+		Method:      "GET",
+		ContentType: "application/json",
+	}.Do()
+	if err != nil {
+		log.Panicln(err)
+	}
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("Request err, status -> %d", resp.StatusCode)
+		return
+	}
+	err = resp.Body.FromToJson(&result)
+	if err != nil {
+		return
+	}
+	if result.Errcode != 0 {
+		err = fmt.Errorf("%s", result.Errmsg)
+		return
+	}
+	log.Println(result)
+	subDeptIdList = result.SubDeptIdList
 	return
 }

@@ -36,7 +36,8 @@
     - /department/get
 - 获取部门列表
     - /department/list
-    
+- 获取子部门ID列表 
+    - /department/list_ids
 ### 通讯录管理-角色管理
 ### 通讯录管理-外部联系人
 ### 通讯录管理-家校通讯录
