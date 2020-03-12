@@ -34,6 +34,8 @@ const (
 	USERGETUSERIDBYUNIONID = DINGTALK + "/user/getUseridByUnionid?access_token=%s&unionid=%s"
 	// 获取管理员列表
 	USERGETADMIN = DINGTALK + "/user/get_admin?access_token=%s"
+	// 获取管理员通讯录权限范围
+	USERGETTADMINSCOPR = DINGTALK + "/topapi/user/get_admin_scope?access_token=%s&userid=%s"
 )
 
 // 通讯录管理-部门管理

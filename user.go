@@ -298,3 +298,36 @@ func GetAdmin(accessToken string) (adminList []*AdminList, err error) {
 	adminList = result.AdminList
 	return
 }
+
+// 获取管理员通讯录权限范围
+func GetAdminScope(accessToken string, userid string) (deptIds []int64, err error) {
+	type Result struct {
+		RespResult
+		DeptIds []int64 `json:"dept_ids"`
+	}
+	var result Result
+	resp, err := ghttp.Request{
+		Url:         fmt.Sprintf(USERGETTADMINSCOPR, accessToken, userid),
+		Body:        nil,
+		Method:      "GET",
+		ContentType: "application/json",
+	}.Do()
+	if err != nil {
+		log.Panicln(err)
+	}
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("Request err, status -> %d", resp.StatusCode)
+		return
+	}
+	err = resp.Body.FromToJson(&result)
+	if err != nil {
+		return
+	}
+	if result.Errcode != 0 {
+		err = fmt.Errorf("%s", result.Errmsg)
+		return
+	}
+	log.Println(result)
+	deptIds = result.DeptIds
+	return
+}

@@ -20,6 +20,8 @@
     - /user/getUseridByUnionid
 - 获取管理员列表
      - /user/get_admin
+- 获取管理员通讯录权限范围
+     - /topapi/user/get_admin_scope
      
 ### 通讯录管理-用户管理
 ### 通讯录管理-部门管理
