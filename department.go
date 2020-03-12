@@ -81,3 +81,62 @@ func GetDepartment(accessToken string, id int64, lang *string) (department *Depa
 	department = &result.Department
 	return
 }
+
+type SimpleDepartment struct {
+	// 部门id
+	Id int64 `json:"id"`
+	//部门名称
+	Name string `json:"name"`
+	// 父部门id，根部门为1
+	Parentid int64 `json:"parentid"`
+	// 是否同步创建一个关联此部门的企业群，true表示是，false表示不是
+	CreateDeptGroup bool `json:"createDeptGroup"`
+	// 当部门群已经创建后，是否有新人加入部门会自动加入该群，true表示是，false表示不是
+	AutoAddUser bool `json:"autoAddUser"`
+	// 部门自定义字段
+	Ext string `json:"ext"`
+}
+
+// 获取部门详情
+func DepartmentList(accessToken string, id *int64, lang *string, fetchChild *bool) (department []*SimpleDepartment, err error) {
+	// ISV微应用固定传递false
+	type Result struct {
+		RespResult
+		Department []*SimpleDepartment `json:"department"`
+	}
+	url := fmt.Sprintf(DEPARTMENTLIST, accessToken)
+	if id != nil {
+		url = fmt.Sprintf("%s&id=%d", url, *id)
+	}
+	if lang != nil {
+		url = fmt.Sprintf("%s&lang=%s", url, *lang)
+	}
+	//if fetchChild != nil {
+	//	url = fmt.Sprintf("%s&lang=%v", url, *fetchChild)
+	//}
+	var result Result
+	resp, err := ghttp.Request{
+		Url:         url,
+		Body:        nil,
+		Method:      "GET",
+		ContentType: "application/json",
+	}.Do()
+	if err != nil {
+		log.Panicln(err)
+	}
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("Request err, status -> %d", resp.StatusCode)
+		return
+	}
+	err = resp.Body.FromToJson(&result)
+	if err != nil {
+		return
+	}
+	if result.Errcode != 0 {
+		err = fmt.Errorf("%s", result.Errmsg)
+		return
+	}
+	log.Println(result)
+	department = result.Department
+	return
+}

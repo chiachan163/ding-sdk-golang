@@ -48,6 +48,8 @@ const (
 const (
 	// 获取部门详情
 	DEPARTMENTGET = DINGTALK + "/department/get?access_token=%s&id=%d"
+	// 获取部门列表
+	DEPARTMENTLIST = DINGTALK + "/department/list?access_token=%s"
 )
 
 // 通讯录管理-角色管理
