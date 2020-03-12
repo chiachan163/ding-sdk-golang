@@ -45,6 +45,11 @@ const (
 )
 
 // 通讯录管理-部门管理
+const (
+	// 获取部门详情
+	DEPARTMENTGET = DINGTALK + "/department/get?access_token=%s&id=%d"
+)
+
 // 通讯录管理-角色管理
 // 通讯录管理-外部联系人
 // 通讯录管理-家校通讯录
