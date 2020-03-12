@@ -12,6 +12,9 @@
 ### 获取登录身份
 - 获取用户userid 
     - /user/getuserinfo
+- 获取管理员的微应用管理权限 
+    - /user/can_access_microapp
+
 ### 通讯录管理-用户管理
 ### 通讯录管理-部门管理
 ### 通讯录管理-角色管理

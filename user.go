@@ -152,3 +152,36 @@ func GetUser(accessToken, userid string) (user *User, err error) {
 	}
 	return
 }
+
+// 获取管理员的微应用管理权限
+func CanAccessMicroapp(accessToken string, appId string, userId string) (canAccess *bool, err error) {
+	type Result struct {
+		RespResult
+		CanAccess bool `json:"canAccess"`
+	}
+	var result Result
+	resp, err := ghttp.Request{
+		Url:         fmt.Sprintf(USERCANACCESSMICROAPP, accessToken, appId, userId),
+		Body:        nil,
+		Method:      "GET",
+		ContentType: "application/json",
+	}.Do()
+	if err != nil {
+		log.Panicln(err)
+	}
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("Request err, status -> %d", resp.StatusCode)
+		return
+	}
+	err = resp.Body.FromToJson(&result)
+	if err != nil {
+		return
+	}
+	if result.Errcode != 0 {
+		err = fmt.Errorf("%s", result.Errmsg)
+		return
+	}
+	log.Println(result)
+	canAccess = &result.CanAccess
+	return
+}

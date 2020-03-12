@@ -26,6 +26,8 @@ const (
 const (
 	// 获取用户详情
 	USERGET = DINGTALK + "/user/get?access_token=%s&userid=%s"
+	// 获取管理员的微应用管理权限
+	USERCANACCESSMICROAPP = DINGTALK + "/user/can_access_microapp?access_token=%s&appId=%s&userId=%s"
 )
 
 // 通讯录管理-部门管理
