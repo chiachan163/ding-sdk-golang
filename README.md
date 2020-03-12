@@ -16,6 +16,8 @@
     - /user/can_access_microapp
 - 根据部门id获取员工ID列表 
     - /user/getDeptMember
+- 根据unionid获取userid
+    - /user/getUseridByUnionid
 
 ### 通讯录管理-用户管理
 ### 通讯录管理-部门管理

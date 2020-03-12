@@ -218,3 +218,43 @@ func GetDeptMember(accessToken string, deptId string) (userIds []string, err err
 	userIds = result.UserIds
 	return
 }
+
+type Userid struct {
+	// 联系类型，0表示企业内部员工，1表示企业外部联系人
+	ContactType int32 `json:"contactType"`
+	// 员工id
+	Userid string `json:"userid"`
+}
+
+// 根据unionid获取userid
+func GetUseridByUnionid(accessToken string, unionid string) (userid *Userid, err error) {
+	type Result struct {
+		RespResult
+		Userid
+	}
+	var result Result
+	resp, err := ghttp.Request{
+		Url:         fmt.Sprintf(GETUSERIDBYUNIONID, accessToken, unionid),
+		Body:        nil,
+		Method:      "GET",
+		ContentType: "application/json",
+	}.Do()
+	if err != nil {
+		log.Panicln(err)
+	}
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("Request err, status -> %d", resp.StatusCode)
+		return
+	}
+	err = resp.Body.FromToJson(&result)
+	if err != nil {
+		return
+	}
+	if result.Errcode != 0 {
+		err = fmt.Errorf("%s", result.Errmsg)
+		return
+	}
+	log.Println(result)
+	userid = &result.Userid
+	return
+}
