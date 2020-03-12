@@ -14,6 +14,8 @@
     - /user/getuserinfo
 - 获取管理员的微应用管理权限 
     - /user/can_access_microapp
+- 根据部门id获取员工ID列表 
+    - /user/getDeptMember
 
 ### 通讯录管理-用户管理
 ### 通讯录管理-部门管理

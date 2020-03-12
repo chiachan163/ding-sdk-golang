@@ -185,3 +185,36 @@ func CanAccessMicroapp(accessToken string, appId string, userId string) (canAcce
 	canAccess = &result.CanAccess
 	return
 }
+
+// 根据部门id获取员工ID列表
+func GetDeptMember(accessToken string, deptId string) (userIds []string, err error) {
+	type Result struct {
+		RespResult
+		UserIds []string `json:"userIds"`
+	}
+	var result Result
+	resp, err := ghttp.Request{
+		Url:         fmt.Sprintf(USERGETDEPTMEMBER, accessToken, deptId),
+		Body:        nil,
+		Method:      "GET",
+		ContentType: "application/json",
+	}.Do()
+	if err != nil {
+		log.Panicln(err)
+	}
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("Request err, status -> %d", resp.StatusCode)
+		return
+	}
+	err = resp.Body.FromToJson(&result)
+	if err != nil {
+		return
+	}
+	if result.Errcode != 0 {
+		err = fmt.Errorf("%s", result.Errmsg)
+		return
+	}
+	log.Println(result)
+	userIds = result.UserIds
+	return
+}
