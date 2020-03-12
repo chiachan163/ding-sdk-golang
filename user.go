@@ -331,3 +331,37 @@ func GetAdminScope(accessToken string, userid string) (deptIds []int64, err erro
 	deptIds = result.DeptIds
 	return
 }
+
+// 获取企业员工人数
+func GetOrgUserCount(accessToken string, onlyActive int) (count int64, err error) {
+	type Result struct {
+		RespResult
+		// 企业员工数量
+		Count int64 `json:"count"`
+	}
+	var result Result
+	resp, err := ghttp.Request{
+		Url:         fmt.Sprintf(USERGETORGUSERCOUNT, accessToken, onlyActive),
+		Body:        nil,
+		Method:      "GET",
+		ContentType: "application/json",
+	}.Do()
+	if err != nil {
+		log.Panicln(err)
+	}
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("Request err, status -> %d", resp.StatusCode)
+		return
+	}
+	err = resp.Body.FromToJson(&result)
+	if err != nil {
+		return
+	}
+	if result.Errcode != 0 {
+		err = fmt.Errorf("%s", result.Errmsg)
+		return
+	}
+	log.Println(result)
+	count = result.Count
+	return
+}

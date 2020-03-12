@@ -36,6 +36,8 @@ const (
 	USERGETADMIN = DINGTALK + "/user/get_admin?access_token=%s"
 	// 获取管理员通讯录权限范围
 	USERGETTADMINSCOPR = DINGTALK + "/topapi/user/get_admin_scope?access_token=%s&userid=%s"
+	// 获取企业员工人数
+	USERGETORGUSERCOUNT = DINGTALK + "/user/get_org_user_count?access_token=%s&onlyActive=%d"
 )
 
 // 通讯录管理-部门管理

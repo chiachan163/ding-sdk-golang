@@ -19,10 +19,12 @@
 - 根据unionid获取userid
     - /user/getUseridByUnionid
 - 获取管理员列表
-     - /user/get_admin
+    - /user/get_admin
 - 获取管理员通讯录权限范围
-     - /topapi/user/get_admin_scope
-     
+    - /topapi/user/get_admin_scope
+- 获取企业员工人数 
+    - /user/get_org_user_count
+
 ### 通讯录管理-用户管理
 ### 通讯录管理-部门管理
 ### 通讯录管理-角色管理
