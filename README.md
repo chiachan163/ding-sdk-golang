@@ -18,7 +18,9 @@
     - /user/getDeptMember
 - 根据unionid获取userid
     - /user/getUseridByUnionid
-
+- 获取管理员列表
+     - /user/get_admin
+     
 ### 通讯录管理-用户管理
 ### 通讯录管理-部门管理
 ### 通讯录管理-角色管理

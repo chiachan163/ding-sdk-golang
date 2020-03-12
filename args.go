@@ -31,7 +31,9 @@ const (
 	// 根据部门id获取员工ID列表
 	USERGETDEPTMEMBER = DINGTALK + "/user/getDeptMember?access_token=%s&deptId=%s"
 	// 根据unionid获取userid
-	GETUSERIDBYUNIONID = DINGTALK + "/user/getUseridByUnionid?access_token=%s&unionid=%s"
+	USERGETUSERIDBYUNIONID = DINGTALK + "/user/getUseridByUnionid?access_token=%s&unionid=%s"
+	// 获取管理员列表
+	USERGETADMIN = DINGTALK + "/user/get_admin?access_token=%s"
 )
 
 // 通讯录管理-部门管理

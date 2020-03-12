@@ -234,7 +234,7 @@ func GetUseridByUnionid(accessToken string, unionid string) (userid *Userid, err
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(GETUSERIDBYUNIONID, accessToken, unionid),
+		Url:         fmt.Sprintf(USERGETUSERIDBYUNIONID, accessToken, unionid),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -256,5 +256,45 @@ func GetUseridByUnionid(accessToken string, unionid string) (userid *Userid, err
 	}
 	log.Println(result)
 	userid = &result.Userid
+	return
+}
+
+type AdminList struct {
+	// 管理员角色，1:主管理员，2:子管理员
+	SysLevel int32 `json:"sys_level"`
+	// 员工id
+	Userid string `json:"userid"`
+}
+
+// 根据unionid获取userid
+func GetAdmin(accessToken string) (adminList []*AdminList, err error) {
+	type Result struct {
+		RespResult
+		AdminList []*AdminList `json:"admin_list"`
+	}
+	var result Result
+	resp, err := ghttp.Request{
+		Url:         fmt.Sprintf(USERGETADMIN, accessToken),
+		Body:        nil,
+		Method:      "GET",
+		ContentType: "application/json",
+	}.Do()
+	if err != nil {
+		log.Panicln(err)
+	}
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("Request err, status -> %d", resp.StatusCode)
+		return
+	}
+	err = resp.Body.FromToJson(&result)
+	if err != nil {
+		return
+	}
+	if result.Errcode != 0 {
+		err = fmt.Errorf("%s", result.Errmsg)
+		return
+	}
+	log.Println(result)
+	adminList = result.AdminList
 	return
 }
