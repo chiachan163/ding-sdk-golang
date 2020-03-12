@@ -8,10 +8,6 @@ import (
 	"github.com/swxctx/ghttp"
 )
 
-// 获取企业凭证
-const GETCORPTOKENURL = "https://oapi.dingtalk.com/service/get_corp_token?suite_access_token=%s"
-const GETSUITETOKENURL = "https://oapi.dingtalk.com/service/get_suite_token"
-
 func GetCorpToken(authCorpid string, suiteAccessToken string) (access_token string, err error) {
 	type Body struct {
 		// 授权企业corpId

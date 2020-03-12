@@ -14,8 +14,6 @@ import (
 // access_token 调用接口凭证
 // code 免登授权码
 
-const USERGETUSERINFO = "https://oapi.dingtalk.com/user/getuserinfo?access_token=%s&code=%s"
-
 type UserInfo struct {
 	// 员工姓名
 	Name string `json:"name"`
@@ -106,8 +104,6 @@ type (
 
 // 获取用户详情
 // 通过access_token和userid获取用户的信息
-const USERGET = "https://oapi.dingtalk.com/user/get?access_token=%s&userid=%s"
-
 func GetUser(accessToken, userid string) (user *User, err error) {
 	type Result struct {
 		RespResult
