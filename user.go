@@ -416,3 +416,63 @@ func ListByPage(accessToken string, departmentId int64, offset *int, size *int, 
 	userList = &result.UserList
 	return
 }
+
+type SimpleUser struct {
+	// 成员名称
+	Name string `json:"name"`
+	// 员工id
+	Userid string `json:"userid"`
+}
+
+type SimpleUserList struct {
+	// 成员列表
+	Userlist []*SimpleUser `json:"userlist"`
+	// 在分页查询时返回，true代表还有下一页更多数据
+	HasMore bool `json:"hasMore"`
+}
+
+func Simplelist(accessToken string, departmentId int64, offset *int, size *int, order *string, lang *string) (userList *SimpleUserList, err error) {
+
+	type Result struct {
+		RespResult
+		SimpleUserList
+	}
+	url := fmt.Sprintf(USERSIMPLELIST, accessToken, departmentId)
+	if offset != nil {
+		url = fmt.Sprintf("%s&offset=%d", url, *offset)
+	}
+	if size != nil {
+		url = fmt.Sprintf("%s&size=%d", url, *size)
+	}
+	if order != nil {
+		url = fmt.Sprintf("%s&order=%s", url, *order)
+	}
+	if lang != nil {
+		url = fmt.Sprintf("%s&lang=%s", url, *lang)
+	}
+	var result Result
+	resp, err := ghttp.Request{
+		Url:         url,
+		Body:        nil,
+		Method:      "GET",
+		ContentType: "application/json",
+	}.Do()
+	if err != nil {
+		log.Panicln(err)
+	}
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("Request err, status -> %d", resp.StatusCode)
+		return
+	}
+	err = resp.Body.FromToJson(&result)
+	if err != nil {
+		return
+	}
+	if result.Errcode != 0 {
+		err = fmt.Errorf("%s", result.Errmsg)
+		return
+	}
+	log.Println(result)
+	userList = &result.SimpleUserList
+	return
+}

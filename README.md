@@ -28,6 +28,8 @@
     - /user/get_org_user_count
 - 获取部门用户详情 
     - /user/listbypage
+- 获取部门用户 
+    - /user/simplelist
 
 ### 通讯录管理-部门管理
 ### 通讯录管理-角色管理

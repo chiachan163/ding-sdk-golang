@@ -40,6 +40,8 @@ const (
 	USERGETORGUSERCOUNT = DINGTALK + "/user/get_org_user_count?access_token=%s&onlyActive=%d"
 	// 获取部门用户详情
 	USERLISTBYPAGE = DINGTALK + "/user/listbypage?access_token=%s&department_id=%d&offset=%d&size=%d&orde=%s&lane=%s"
+	// 获取部门用户
+	USERSIMPLELIST = DINGTALK + "/user/simplelist?access_token=%s&department_id=%d"
 )
 
 // 通讯录管理-部门管理
