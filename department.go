@@ -207,3 +207,36 @@ func DepartmentListParentDepts(accessToken string, userid string) (department []
 	department = result.Department
 	return
 }
+
+// 查询部门的所有上级父部门路径
+func DepartmentListParentDeptsByDept(accessToken string, id int64) (parentIds []int64, err error) {
+	type Result struct {
+		RespResult
+		ParentIds []int64 `json:"parentIds"`
+	}
+	var result Result
+	resp, err := ghttp.Request{
+		Url:         fmt.Sprintf(DEPARTMENTLISTPARENTDEPTSBYDEPT, accessToken, id),
+		Body:        nil,
+		Method:      "GET",
+		ContentType: "application/json",
+	}.Do()
+	if err != nil {
+		log.Panicln(err)
+	}
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("Request err, status -> %d", resp.StatusCode)
+		return
+	}
+	err = resp.Body.FromToJson(&result)
+	if err != nil {
+		return
+	}
+	if result.Errcode != 0 {
+		err = fmt.Errorf("%s", result.Errmsg)
+		return
+	}
+	log.Println(result)
+	parentIds = result.ParentIds
+	return
+}
