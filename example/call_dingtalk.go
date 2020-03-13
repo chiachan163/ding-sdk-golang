@@ -28,7 +28,7 @@ func main() {
 	const CORPID = "xxx"
 
 	ding_sdk_golang.CallDingTalk(CORPID, ding_sdk_golang.GETSUITETOKENURL, func(corpId string, apiPath string) error {
-		suiteAccessToken, err := ding_sdk_golang.GetSuiteToken("suitexiso0q2p5rxt3nr3", "kws8FIiNgFS2E0GD1CjQOfrD0uMJ9kO_bYs2JryR5GZU8Lm85xyMeX7YmHYjqAyZ", "")
+		suiteAccessToken, err := ding_sdk_golang.GetSuiteToken("xxx", "xxx", "")
 		if err != nil {
 			log.Fatalf("ding_sdk_golang.GetSuiteToken error, err : %v", err)
 		}
