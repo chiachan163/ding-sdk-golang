@@ -3,17 +3,17 @@ package main
 import (
 	"log"
 
-	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang"
+	"github.com/chiachan163/ding-sdk-golang/dingtalk"
 )
 
 func main() {
 	const CORPID = "xxx"
-	suiteAccessToken, err := ding_sdk_golang.GetSuiteToken("xxx", "xxx", "")
+	suiteAccessToken, err := dingtalk.GetSuiteToken("xxx", "xxx", "")
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetSuiteToken error, err : %v", err)
 	}
 	log.Println("suite_access_token: ", suiteAccessToken)
-	accessToken, err := ding_sdk_golang.GetCorpToken(CORPID, suiteAccessToken)
+	accessToken, err := dingtalk.GetCorpToken(CORPID, suiteAccessToken)
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetCorpToken error, err : %v", err)
 	}
@@ -71,7 +71,7 @@ func main() {
 	//log.Println(userList.Userlist[0])
 
 	// 获取部门用户详情
-	userList, err := ding_sdk_golang.Simplelist(accessToken, 1, nil, nil, nil, nil)
+	userList, err := dingtalk.Simplelist(accessToken, 1, nil, nil, nil, nil)
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.ListByPage error, err : %v", err)
 	}

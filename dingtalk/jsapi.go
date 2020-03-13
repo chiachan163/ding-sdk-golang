@@ -1,21 +1,24 @@
-package ding_sdk_golang
+package dingtalk
 
 import (
 	"fmt"
 	"log"
 	"net/http"
 
+	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang"
+	"github.com/chiachan163/ding-sdk-golang/arg"
+
 	"github.com/swxctx/ghttp"
 )
 
 func GetJsapiTicket(accessToken string) (ticket *string, err error) {
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		Ticket string `json:"ticket"`
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(GETJSAPITICKET+"?access_token=%s", accessToken),
+		Url:         fmt.Sprintf(arg.GETJSAPITICKET+"?access_token=%s", accessToken),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",

@@ -1,4 +1,4 @@
-package ding_sdk_golang
+package arg
 
 /*
  * 路径管理

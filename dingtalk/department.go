@@ -1,9 +1,13 @@
-package ding_sdk_golang
+package dingtalk
 
 import (
 	"fmt"
 	"log"
 	"net/http"
+
+	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang"
+
+	"github.com/chiachan163/ding-sdk-golang/arg"
 
 	"github.com/swxctx/ghttp"
 )
@@ -48,10 +52,10 @@ type Department struct {
 // 获取部门详情
 func GetDepartment(accessToken string, id int64, lang *string) (department *Department, err error) {
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		Department
 	}
-	url := fmt.Sprintf(DEPARTMENTGET+"?access_token=%s&id=%d", accessToken, id)
+	url := fmt.Sprintf(arg.DEPARTMENTGET+"?access_token=%s&id=%d", accessToken, id)
 	if lang != nil {
 		url = fmt.Sprintf("%s&lang=%s", url, *lang)
 	}
@@ -101,10 +105,10 @@ type SimpleDepartment struct {
 func DepartmentList(accessToken string, id *int64, lang *string, fetchChild *bool) (department []*SimpleDepartment, err error) {
 	// ISV微应用固定传递false
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		Department []*SimpleDepartment `json:"department"`
 	}
-	url := fmt.Sprintf(DEPARTMENTLIST+"?access_token=%s", accessToken)
+	url := fmt.Sprintf(arg.DEPARTMENTLIST+"?access_token=%s", accessToken)
 	if id != nil {
 		url = fmt.Sprintf("%s&id=%d", url, *id)
 	}
@@ -145,12 +149,12 @@ func DepartmentList(accessToken string, id *int64, lang *string, fetchChild *boo
 func DepartmentListIds(accessToken string, id int64) (subDeptIdList []int64, err error) {
 	// ISV微应用固定传递false
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		SubDeptIdList []int64 `json:"sub_dept_id_list"`
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(DEPARTMENTLISTIDS+"?access_token=%s&id=%d", accessToken, id),
+		Url:         fmt.Sprintf(arg.DEPARTMENTLISTIDS+"?access_token=%s&id=%d", accessToken, id),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -178,12 +182,12 @@ func DepartmentListIds(accessToken string, id int64) (subDeptIdList []int64, err
 // 查询指定用户的所有上级父部门路径
 func DepartmentListParentDepts(accessToken string, userid string) (department [][]int64, err error) {
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		Department [][]int64 `json:"department"`
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(DEPARTMENTLISTPARENTDEPTS+"?access_token=%s&userId=%s", accessToken, userid),
+		Url:         fmt.Sprintf(arg.DEPARTMENTLISTPARENTDEPTS+"?access_token=%s&userId=%s", accessToken, userid),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -211,12 +215,12 @@ func DepartmentListParentDepts(accessToken string, userid string) (department []
 // 查询部门的所有上级父部门路径
 func DepartmentListParentDeptsByDept(accessToken string, id int64) (parentIds []int64, err error) {
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		ParentIds []int64 `json:"parentIds"`
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(DEPARTMENTLISTPARENTDEPTSBYDEPT+"?access_token=%s&id=%d", accessToken, id),
+		Url:         fmt.Sprintf(arg.DEPARTMENTLISTPARENTDEPTSBYDEPT+"?access_token=%s&id=%d", accessToken, id),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",

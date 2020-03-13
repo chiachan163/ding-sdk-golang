@@ -1,9 +1,13 @@
-package ding_sdk_golang
+package dingtalk
 
 import (
 	"fmt"
 	"log"
 	"net/http"
+
+	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang"
+
+	"github.com/chiachan163/ding-sdk-golang/arg"
 
 	"github.com/swxctx/ghttp"
 )
@@ -33,12 +37,12 @@ func Getuserinfo(accessToken string, code string) (userInfo *UserInfo, err error
 	//	Code string `json:"code"`
 	//}
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		UserInfo
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGETUSERINFO+"?access_token=%s&code=%s", accessToken, code),
+		Url:         fmt.Sprintf(arg.USERGETUSERINFO+"?access_token=%s&code=%s", accessToken, code),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -108,12 +112,12 @@ type (
 // 通过access_token和userid获取用户的信息
 func GetUser(accessToken, userid string) (user *User, err error) {
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		User
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGET+"?access_token=%s&userid=%s", accessToken, userid),
+		Url:         fmt.Sprintf(arg.USERGET+"?access_token=%s&userid=%s", accessToken, userid),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -141,12 +145,12 @@ func GetUser(accessToken, userid string) (user *User, err error) {
 // 获取管理员的微应用管理权限
 func CanAccessMicroapp(accessToken string, appId string, userId string) (canAccess *bool, err error) {
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		CanAccess bool `json:"canAccess"`
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERCANACCESSMICROAPP+"?access_token=%s&appId=%s&userId=%s", accessToken, appId, userId),
+		Url:         fmt.Sprintf(arg.USERCANACCESSMICROAPP+"?access_token=%s&appId=%s&userId=%s", accessToken, appId, userId),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -174,12 +178,12 @@ func CanAccessMicroapp(accessToken string, appId string, userId string) (canAcce
 // 根据部门id获取员工ID列表
 func GetDeptMember(accessToken string, deptId string) (userIds []string, err error) {
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		UserIds []string `json:"userIds"`
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGETDEPTMEMBER+"?access_token=%s&deptId=%s", accessToken, deptId),
+		Url:         fmt.Sprintf(arg.USERGETDEPTMEMBER+"?access_token=%s&deptId=%s", accessToken, deptId),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -214,12 +218,12 @@ type Userid struct {
 // 根据unionid获取userid
 func GetUseridByUnionid(accessToken string, unionid string) (userid *Userid, err error) {
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		Userid
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGETUSERIDBYUNIONID+"?access_token=%s&unionid=%s", accessToken, unionid),
+		Url:         fmt.Sprintf(arg.USERGETUSERIDBYUNIONID+"?access_token=%s&unionid=%s", accessToken, unionid),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -254,12 +258,12 @@ type AdminList struct {
 // 根据unionid获取userid
 func GetAdmin(accessToken string) (adminList []*AdminList, err error) {
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		AdminList []*AdminList `json:"admin_list"`
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGETADMIN+"?access_token=%s", accessToken),
+		Url:         fmt.Sprintf(arg.USERGETADMIN+"?access_token=%s", accessToken),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -287,12 +291,12 @@ func GetAdmin(accessToken string) (adminList []*AdminList, err error) {
 // 获取管理员通讯录权限范围
 func GetAdminScope(accessToken string, userid string) (deptIds []int64, err error) {
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		DeptIds []int64 `json:"dept_ids"`
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGETTADMINSCOPR+"?access_token=%s&userid=%s", accessToken, userid),
+		Url:         fmt.Sprintf(arg.USERGETTADMINSCOPR+"?access_token=%s&userid=%s", accessToken, userid),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -320,13 +324,13 @@ func GetAdminScope(accessToken string, userid string) (deptIds []int64, err erro
 // 获取企业员工人数
 func GetOrgUserCount(accessToken string, onlyActive int) (count int64, err error) {
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		// 企业员工数量
 		Count int64 `json:"count"`
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGETORGUSERCOUNT+"?access_token=%s&onlyActive=%d", accessToken, onlyActive),
+		Url:         fmt.Sprintf(arg.USERGETORGUSERCOUNT+"?access_token=%s&onlyActive=%d", accessToken, onlyActive),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -371,7 +375,7 @@ type UserList struct {
 func ListByPage(accessToken string, departmentId int64, offset *int, size *int, order *string, lang *string) (userList *UserList, err error) {
 
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		UserList
 	}
 	_offset := 0
@@ -392,7 +396,7 @@ func ListByPage(accessToken string, departmentId int64, offset *int, size *int, 
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERLISTBYPAGE+"?access_token=%s&department_id=%d&offset=%d&size=%d&orde=%s&lane=%s", accessToken, departmentId, _offset, _size, _order, _lang),
+		Url:         fmt.Sprintf(arg.USERLISTBYPAGE+"?access_token=%s&department_id=%d&offset=%d&size=%d&orde=%s&lane=%s", accessToken, departmentId, _offset, _size, _order, _lang),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -434,10 +438,10 @@ type SimpleUserList struct {
 func Simplelist(accessToken string, departmentId int64, offset *int, size *int, order *string, lang *string) (userList *SimpleUserList, err error) {
 
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		SimpleUserList
 	}
-	url := fmt.Sprintf(USERSIMPLELIST+"?access_token=%s&department_id=%d", accessToken, departmentId)
+	url := fmt.Sprintf(arg.USERSIMPLELIST+"?access_token=%s&department_id=%d", accessToken, departmentId)
 	if offset != nil {
 		url = fmt.Sprintf("%s&offset=%d", url, *offset)
 	}

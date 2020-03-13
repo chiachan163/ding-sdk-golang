@@ -3,17 +3,17 @@ package main
 import (
 	"log"
 
-	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang"
+	"github.com/chiachan163/ding-sdk-golang/dingtalk"
 )
 
 func main() {
 	const CORPID = "xxx"
-	suiteAccessToken, err := ding_sdk_golang.GetSuiteToken("xxx", "xxx", "")
+	suiteAccessToken, err := dingtalk.GetSuiteToken("xxx", "xxx", "")
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetSuiteToken error, err : %v", err)
 	}
 	log.Println("suite_access_token: ", suiteAccessToken)
-	accessToken, err := ding_sdk_golang.GetCorpToken(CORPID, suiteAccessToken)
+	accessToken, err := dingtalk.GetCorpToken(CORPID, suiteAccessToken)
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetCorpToken error, err : %v", err)
 	}
@@ -21,12 +21,12 @@ func main() {
 
 	// 免登授权码
 	code := "f4196a7cd6e73908ab010ee5bc3b379a"
-	userinfo, err := ding_sdk_golang.Getuserinfo(accessToken, code)
+	userinfo, err := dingtalk.Getuserinfo(accessToken, code)
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetCorpToken error, err : %v", err)
 	}
 	log.Println(userinfo)
-	user, err := ding_sdk_golang.GetUser(accessToken, userinfo.Userid)
+	user, err := dingtalk.GetUser(accessToken, userinfo.Userid)
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetCorpToken error, err : %v", err)
 	}

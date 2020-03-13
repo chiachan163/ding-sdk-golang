@@ -1,9 +1,12 @@
-package ding_sdk_golang
+package dingtalk
 
 import (
 	"fmt"
 	"log"
 	"net/http"
+
+	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang"
+	"github.com/chiachan163/ding-sdk-golang/arg"
 
 	"github.com/swxctx/ghttp"
 )
@@ -29,7 +32,7 @@ func GetCorpToken(authCorpid string, suiteAccessToken string) (access_token stri
 		AuthCorpid: authCorpid,
 	}
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(GETCORPTOKENURL+"?suite_access_token=%s", suiteAccessToken),
+		Url:         fmt.Sprintf(arg.GETCORPTOKENURL+"?suite_access_token=%s", suiteAccessToken),
 		Body:        body,
 		Method:      "POST",
 		ContentType: "application/json",
@@ -63,7 +66,7 @@ func GetSuiteToken(suiteKey string, suiteSecret string, suiteTicket string) (sui
 		SuiteKey string `json:"suite_key"`
 	}
 	type Result struct {
-		RespResult
+		ding_sdk_golang.RespResult
 		// 授权方（企业）corp_access_token
 		SuiteAccessToken string `json:"suite_access_token"`
 	}
@@ -74,7 +77,7 @@ func GetSuiteToken(suiteKey string, suiteSecret string, suiteTicket string) (sui
 		SuiteKey:    suiteKey,
 	}
 	resp, err := ghttp.Request{
-		Url:         GETSUITETOKENURL,
+		Url:         arg.GETSUITETOKENURL,
 		Body:        body,
 		Method:      "POST",
 		ContentType: "application/json",

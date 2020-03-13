@@ -3,17 +3,17 @@ package main
 import (
 	"log"
 
-	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang"
+	"github.com/chiachan163/ding-sdk-golang/dingtalk"
 )
 
 func main() {
 	const CORPID = "xxx"
-	suiteAccessToken, err := ding_sdk_golang.GetSuiteToken("xxx", "xxx", "")
+	suiteAccessToken, err := dingtalk.GetSuiteToken("xxx", "xxx", "")
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetSuiteToken error, err : %v", err)
 	}
 	log.Println("suite_access_token: ", suiteAccessToken)
-	accessToken, err := ding_sdk_golang.GetCorpToken(CORPID, suiteAccessToken)
+	accessToken, err := dingtalk.GetCorpToken(CORPID, suiteAccessToken)
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetCorpToken error, err : %v", err)
 	}
@@ -49,7 +49,7 @@ func main() {
 	//log.Println(department)
 
 	// 查询部门的所有上级父部门路径
-	parentIds, err := ding_sdk_golang.DepartmentListParentDeptsByDept(accessToken, 280467091)
+	parentIds, err := dingtalk.DepartmentListParentDeptsByDept(accessToken, 280467091)
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetDepartment error, err : %v", err)
 	}

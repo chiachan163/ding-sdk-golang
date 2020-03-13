@@ -4,6 +4,10 @@ import (
 	"log"
 	"time"
 
+	"github.com/chiachan163/ding-sdk-golang/dingtalk"
+
+	"github.com/chiachan163/ding-sdk-golang/arg"
+
 	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang"
 	ding_redis "github.com/chiachan163/ding-sdk-golang/redis"
 	"github.com/xiaoenai/tp-micro/v6/model/redis"
@@ -27,8 +31,8 @@ func init() {
 func main() {
 	const CORPID = "xxx"
 
-	ding_sdk_golang.CallDingTalk(CORPID, ding_sdk_golang.GETSUITETOKENURL, func(corpId string, apiPath string) error {
-		suiteAccessToken, err := ding_sdk_golang.GetSuiteToken("xxx", "xxx", "")
+	ding_sdk_golang.CallDingTalk(CORPID, arg.GETSUITETOKENURL, func(corpId string, apiPath string) error {
+		suiteAccessToken, err := dingtalk.GetSuiteToken("xxx", "xxx", "")
 		if err != nil {
 			log.Fatalf("ding_sdk_golang.GetSuiteToken error, err : %v", err)
 		}

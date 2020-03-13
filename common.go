@@ -20,5 +20,6 @@ func CallDingTalk(corpId string, apiPath string, fn func(corpId string, apiPath 
 	if allTimes > 3000 {
 		return fmt.Errorf("调用钉钉平台接口总量超出限制")
 	}
+
 	return fn(corpId, apiPath)
 }
