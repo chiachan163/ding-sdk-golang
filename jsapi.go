@@ -15,7 +15,7 @@ func GetJsapiTicket(accessToken string) (ticket *string, err error) {
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(GETJSAPITICKET, accessToken),
+		Url:         fmt.Sprintf(GETJSAPITICKET+"?access_token=%s", accessToken),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",

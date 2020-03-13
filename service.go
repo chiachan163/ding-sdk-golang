@@ -29,7 +29,7 @@ func GetCorpToken(authCorpid string, suiteAccessToken string) (access_token stri
 		AuthCorpid: authCorpid,
 	}
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(GETCORPTOKENURL, suiteAccessToken),
+		Url:         fmt.Sprintf(GETCORPTOKENURL+"?suite_access_token=%s", suiteAccessToken),
 		Body:        body,
 		Method:      "POST",
 		ContentType: "application/json",

@@ -8,9 +8,9 @@ const DINGTALK = "https://oapi.dingtalk.com"
 // 获取凭证
 const (
 	// 获取jsapi ticket
-	GETJSAPITICKET = DINGTALK + "/get_jsapi_ticket?access_token=%s"
+	GETJSAPITICKET = DINGTALK + "/get_jsapi_ticket"
 	// 获取企业凭证
-	GETCORPTOKENURL = DINGTALK + "/service/get_corp_token?suite_access_token=%s"
+	GETCORPTOKENURL = DINGTALK + "/service/get_corp_token"
 	// 获取第三方凭证
 	GETSUITETOKENURL = DINGTALK + "/service/get_suite_token"
 )
@@ -19,43 +19,43 @@ const (
 // 获取登录身份
 const (
 	// 获取用户userid
-	USERGETUSERINFO = "https://oapi.dingtalk.com/user/getuserinfo?access_token=%s&code=%s"
+	USERGETUSERINFO = "https://oapi.dingtalk.com/user/getuserinfo"
 )
 
 // 通讯录管理-用户管理
 const (
 	// 获取用户详情
-	USERGET = DINGTALK + "/user/get?access_token=%s&userid=%s"
+	USERGET = DINGTALK + "/user/get"
 	// 获取管理员的微应用管理权限
-	USERCANACCESSMICROAPP = DINGTALK + "/user/can_access_microapp?access_token=%s&appId=%s&userId=%s"
+	USERCANACCESSMICROAPP = DINGTALK + "/user/can_access_microapp"
 	// 根据部门id获取员工ID列表
-	USERGETDEPTMEMBER = DINGTALK + "/user/getDeptMember?access_token=%s&deptId=%s"
+	USERGETDEPTMEMBER = DINGTALK + "/user/getDeptMember"
 	// 根据unionid获取userid
-	USERGETUSERIDBYUNIONID = DINGTALK + "/user/getUseridByUnionid?access_token=%s&unionid=%s"
+	USERGETUSERIDBYUNIONID = DINGTALK + "/user/getUseridByUnionid"
 	// 获取管理员列表
-	USERGETADMIN = DINGTALK + "/user/get_admin?access_token=%s"
+	USERGETADMIN = DINGTALK + "/user/get_admin"
 	// 获取管理员通讯录权限范围
-	USERGETTADMINSCOPR = DINGTALK + "/topapi/user/get_admin_scope?access_token=%s&userid=%s"
+	USERGETTADMINSCOPR = DINGTALK + "/topapi/user/get_admin_scope"
 	// 获取企业员工人数
-	USERGETORGUSERCOUNT = DINGTALK + "/user/get_org_user_count?access_token=%s&onlyActive=%d"
+	USERGETORGUSERCOUNT = DINGTALK + "/user/get_org_user_count"
 	// 获取部门用户详情
-	USERLISTBYPAGE = DINGTALK + "/user/listbypage?access_token=%s&department_id=%d&offset=%d&size=%d&orde=%s&lane=%s"
+	USERLISTBYPAGE = DINGTALK + "/user/listbypage"
 	// 获取部门用户
-	USERSIMPLELIST = DINGTALK + "/user/simplelist?access_token=%s&department_id=%d"
+	USERSIMPLELIST = DINGTALK + "/user/simplelist"
 )
 
 // 通讯录管理-部门管理
 const (
 	// 获取部门详情
-	DEPARTMENTGET = DINGTALK + "/department/get?access_token=%s&id=%d"
+	DEPARTMENTGET = DINGTALK + "/department/get"
 	// 获取部门列表
-	DEPARTMENTLIST = DINGTALK + "/department/list?access_token=%s"
+	DEPARTMENTLIST = DINGTALK + "/department/list"
 	// 获取子部门ID列表
-	DEPARTMENTLISTIDS = DINGTALK + "/department/list_ids?access_token=%s&id=%d"
+	DEPARTMENTLISTIDS = DINGTALK + "/department/list_ids"
 	// 查询指定用户的所有上级父部门路径
-	DEPARTMENTLISTPARENTDEPTS = DINGTALK + "/department/list_parent_depts?access_token=%s&userId=%s"
+	DEPARTMENTLISTPARENTDEPTS = DINGTALK + "/department/list_parent_depts"
 	// 查询部门的所有上级父部门路径
-	DEPARTMENTLISTPARENTDEPTSBYDEPT = DINGTALK + "/department/list_parent_depts_by_dept?access_token=%s&id=%d"
+	DEPARTMENTLISTPARENTDEPTSBYDEPT = DINGTALK + "/department/list_parent_depts_by_dept"
 )
 
 // 通讯录管理-角色管理

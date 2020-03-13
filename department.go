@@ -51,7 +51,7 @@ func GetDepartment(accessToken string, id int64, lang *string) (department *Depa
 		RespResult
 		Department
 	}
-	url := fmt.Sprintf(DEPARTMENTGET, accessToken, id)
+	url := fmt.Sprintf(DEPARTMENTGET+"?access_token=%s&id=%d", accessToken, id)
 	if lang != nil {
 		url = fmt.Sprintf("%s&lang=%s", url, *lang)
 	}
@@ -104,7 +104,7 @@ func DepartmentList(accessToken string, id *int64, lang *string, fetchChild *boo
 		RespResult
 		Department []*SimpleDepartment `json:"department"`
 	}
-	url := fmt.Sprintf(DEPARTMENTLIST, accessToken)
+	url := fmt.Sprintf(DEPARTMENTLIST+"?access_token=%s", accessToken)
 	if id != nil {
 		url = fmt.Sprintf("%s&id=%d", url, *id)
 	}
@@ -150,7 +150,7 @@ func DepartmentListIds(accessToken string, id int64) (subDeptIdList []int64, err
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(DEPARTMENTLISTIDS, accessToken, id),
+		Url:         fmt.Sprintf(DEPARTMENTLISTIDS+"?access_token=%s&id=%d", accessToken, id),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -183,7 +183,7 @@ func DepartmentListParentDepts(accessToken string, userid string) (department []
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(DEPARTMENTLISTPARENTDEPTS, accessToken, userid),
+		Url:         fmt.Sprintf(DEPARTMENTLISTPARENTDEPTS+"?access_token=%s&userId=%s", accessToken, userid),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -216,7 +216,7 @@ func DepartmentListParentDeptsByDept(accessToken string, id int64) (parentIds []
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(DEPARTMENTLISTPARENTDEPTSBYDEPT, accessToken, id),
+		Url:         fmt.Sprintf(DEPARTMENTLISTPARENTDEPTSBYDEPT+"?access_token=%s&id=%d", accessToken, id),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",

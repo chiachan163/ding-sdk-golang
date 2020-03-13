@@ -38,7 +38,7 @@ func Getuserinfo(accessToken string, code string) (userInfo *UserInfo, err error
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGETUSERINFO, accessToken, code),
+		Url:         fmt.Sprintf(USERGETUSERINFO+"?access_token=%s&code=%s", accessToken, code),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -113,7 +113,7 @@ func GetUser(accessToken, userid string) (user *User, err error) {
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGET, accessToken, userid),
+		Url:         fmt.Sprintf(USERGET+"?access_token=%s&userid=%s", accessToken, userid),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -146,7 +146,7 @@ func CanAccessMicroapp(accessToken string, appId string, userId string) (canAcce
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERCANACCESSMICROAPP, accessToken, appId, userId),
+		Url:         fmt.Sprintf(USERCANACCESSMICROAPP+"?access_token=%s&appId=%s&userId=%s", accessToken, appId, userId),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -179,7 +179,7 @@ func GetDeptMember(accessToken string, deptId string) (userIds []string, err err
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGETDEPTMEMBER, accessToken, deptId),
+		Url:         fmt.Sprintf(USERGETDEPTMEMBER+"?access_token=%s&deptId=%s", accessToken, deptId),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -219,7 +219,7 @@ func GetUseridByUnionid(accessToken string, unionid string) (userid *Userid, err
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGETUSERIDBYUNIONID, accessToken, unionid),
+		Url:         fmt.Sprintf(USERGETUSERIDBYUNIONID+"?access_token=%s&unionid=%s", accessToken, unionid),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -259,7 +259,7 @@ func GetAdmin(accessToken string) (adminList []*AdminList, err error) {
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGETADMIN, accessToken),
+		Url:         fmt.Sprintf(USERGETADMIN+"?access_token=%s", accessToken),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -292,7 +292,7 @@ func GetAdminScope(accessToken string, userid string) (deptIds []int64, err erro
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGETTADMINSCOPR, accessToken, userid),
+		Url:         fmt.Sprintf(USERGETTADMINSCOPR+"?access_token=%s&userid=%s", accessToken, userid),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -326,7 +326,7 @@ func GetOrgUserCount(accessToken string, onlyActive int) (count int64, err error
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERGETORGUSERCOUNT, accessToken, onlyActive),
+		Url:         fmt.Sprintf(USERGETORGUSERCOUNT+"?access_token=%s&onlyActive=%d", accessToken, onlyActive),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -392,7 +392,7 @@ func ListByPage(accessToken string, departmentId int64, offset *int, size *int, 
 	}
 	var result Result
 	resp, err := ghttp.Request{
-		Url:         fmt.Sprintf(USERLISTBYPAGE, accessToken, departmentId, _offset, _size, _order, _lang),
+		Url:         fmt.Sprintf(USERLISTBYPAGE+"?access_token=%s&department_id=%d&offset=%d&size=%d&orde=%s&lane=%s", accessToken, departmentId, _offset, _size, _order, _lang),
 		Body:        nil,
 		Method:      "GET",
 		ContentType: "application/json",
@@ -437,7 +437,7 @@ func Simplelist(accessToken string, departmentId int64, offset *int, size *int, 
 		RespResult
 		SimpleUserList
 	}
-	url := fmt.Sprintf(USERSIMPLELIST, accessToken, departmentId)
+	url := fmt.Sprintf(USERSIMPLELIST+"?access_token=%s&department_id=%d", accessToken, departmentId)
 	if offset != nil {
 		url = fmt.Sprintf("%s&offset=%d", url, *offset)
 	}
