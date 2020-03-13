@@ -38,6 +38,11 @@
     - /department/list
 - 获取子部门ID列表 
     - /department/list_ids
+- 查询指定用户的所有上级父部门路径
+    - /department/list_parent_depts
+- 查询部门的所有上级父部门路径
+    - /department/list_parent_depts_by_dept
+    
 ### 通讯录管理-角色管理
 ### 通讯录管理-外部联系人
 ### 通讯录管理-家校通讯录

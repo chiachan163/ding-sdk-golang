@@ -52,6 +52,10 @@ const (
 	DEPARTMENTLIST = DINGTALK + "/department/list?access_token=%s"
 	// 获取子部门ID列表
 	DEPARTMENTLISTIDS = DINGTALK + "/department/list_ids?access_token=%s&id=%d"
+	// 查询指定用户的所有上级父部门路径
+	DEPARTMENTLISTPARENTDEPTS = DINGTALK + "/department/list_parent_depts?access_token=%s&userId=%s"
+	// 查询部门的所有上级父部门路径
+	DEPARTMENTLISTPARENTDEPTSBYDEPT = DINGTALK + "/department/list_parent_depts_by_dept?access_token=%s&id=%d"
 )
 
 // 通讯录管理-角色管理
