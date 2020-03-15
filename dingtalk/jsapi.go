@@ -5,18 +5,13 @@ import (
 	"log"
 	"net/http"
 
-	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang"
 	"github.com/chiachan163/ding-sdk-golang/arg"
 
 	"github.com/swxctx/ghttp"
 )
 
-func GetJsapiTicket(accessToken string) (ticket *string, err error) {
-	type Result struct {
-		ding_sdk_golang.RespResult
-		Ticket string `json:"ticket"`
-	}
-	var result Result
+func GetJsapiTicket(accessToken string) (_result *arg.GetJsapiTicketResult, err error) {
+	var result arg.GetJsapiTicketResult
 	resp, err := ghttp.Request{
 		Url:         fmt.Sprintf(arg.GETJSAPITICKET+"?access_token=%s", accessToken),
 		Body:        nil,
@@ -39,6 +34,6 @@ func GetJsapiTicket(accessToken string) (ticket *string, err error) {
 		return
 	}
 	log.Println(result)
-	ticket = &result.Ticket
+	_result = &result
 	return
 }

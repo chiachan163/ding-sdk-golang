@@ -13,7 +13,7 @@ func main() {
 		log.Fatalf("ding_sdk_golang.GetSuiteToken error, err : %v", err)
 	}
 	log.Println("suite_access_token: ", suiteAccessToken)
-	accessToken, err := dingtalk.GetCorpToken(CORPID, suiteAccessToken)
+	accessToken, err := dingtalk.GetCorpToken(CORPID, suiteAccessToken.SuiteAccessToken)
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.GetCorpToken error, err : %v", err)
 	}
@@ -63,17 +63,17 @@ func main() {
 	//}
 	//log.Println(count)
 
-	//// 获取部门用户详情
-	//userList, err := ding_sdk_golang.ListByPage(accessToken, 1, nil, nil, nil, nil)
-	//if err != nil {
-	//	log.Fatalf("ding_sdk_golang.ListByPage error, err : %v", err)
-	//}
-	//log.Println(userList.Userlist[0])
-
 	// 获取部门用户详情
-	userList, err := dingtalk.Simplelist(accessToken, 1, nil, nil, nil, nil)
+	userList, err := dingtalk.ListByPage(accessToken.AccessToken, 1, nil, nil, nil, nil)
 	if err != nil {
 		log.Fatalf("ding_sdk_golang.ListByPage error, err : %v", err)
 	}
 	log.Println(userList.Userlist[0])
+
+	////获取部门用户详情
+	//userList, err := ding_sdk_golang.Simplelist(accessToken, 1, nil, nil, nil, nil)
+	//if err != nil {
+	//	log.Fatalf("ding_sdk_golang.ListByPage error, err : %v", err)
+	//}
+	//log.Println(userList.Userlist[0])
 }
