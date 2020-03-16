@@ -29,11 +29,7 @@ func GetJsapiTicket(accessToken string) (_result *arg.GetJsapiTicketResult, err 
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }

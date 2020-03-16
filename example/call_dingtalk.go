@@ -31,12 +31,16 @@ func init() {
 func main() {
 	const CORPID = "xxx"
 
-	ding_sdk_golang.CallDingTalk(CORPID, arg.GETSUITETOKENURL, func(corpId string, apiPath string) error {
-		suiteAccessToken, err := dingtalk.GetSuiteToken("xxx", "xxx", "")
+	ding_sdk_golang.CallDingTalk(CORPID, arg.GETCORPTOKENURLID, func(corpId string, apiPath int) (*ding_sdk_golang.RespResult, error) {
+		result, err := dingtalk.GetSuiteToken("xxx", "xxx", "")
 		if err != nil {
 			log.Fatalf("ding_sdk_golang.GetSuiteToken error, err : %v", err)
 		}
-		log.Println("suite_access_token: ", suiteAccessToken)
-		return nil
+		log.Println("suite_access_token: ", result.SuiteAccessToken)
+
+		return &ding_sdk_golang.RespResult{
+			Errcode: result.Errcode,
+			Errmsg:  result.Errmsg,
+		}, nil
 	})
 }

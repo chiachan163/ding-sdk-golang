@@ -2,7 +2,6 @@ package dingtalk
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/chiachan163/ding-sdk-golang/arg"
@@ -33,10 +32,6 @@ func GetDepartment(accessToken string, id int64, lang *string) (_result *arg.Get
 	}
 	err = resp.Body.FromToJson(&result)
 	if err != nil {
-		return
-	}
-	if _result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
 		return
 	}
 	_result = &result
@@ -74,11 +69,7 @@ func DepartmentList(accessToken string, id *int64, lang *string, fetchChild *boo
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }
@@ -104,11 +95,7 @@ func DepartmentListIds(accessToken string, id int64) (_result *arg.DepartmentLis
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }
@@ -133,11 +120,7 @@ func DepartmentListParentDepts(accessToken string, userid string) (_result *arg.
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }
@@ -163,11 +146,7 @@ func DepartmentListParentDeptsByDept(accessToken string, id int64) (_result *arg
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }

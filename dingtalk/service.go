@@ -40,10 +40,6 @@ func GetCorpToken(authCorpid string, suiteAccessToken string) (_result *arg.GetC
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
 	_result = &result
 	return
 }
@@ -81,10 +77,7 @@ func GetSuiteToken(suiteKey string, suiteSecret string, suiteTicket string) (_re
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
+
 	_result = &result
 	return
 }

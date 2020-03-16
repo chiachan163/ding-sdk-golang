@@ -42,10 +42,7 @@ func Getuserinfo(accessToken string, code string) (_result *arg.GetuserinfoResul
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
+
 	_result = &result
 	return
 }
@@ -72,11 +69,7 @@ func GetUser(accessToken, userid string) (_result *arg.GetUserResult, err error)
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }
@@ -102,11 +95,7 @@ func CanAccessMicroapp(accessToken string, appId string, userId string) (_result
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }
@@ -132,11 +121,7 @@ func GetDeptMember(accessToken string, deptId string) (_result *arg.GetDeptMembe
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }
@@ -162,11 +147,7 @@ func GetUseridByUnionid(accessToken string, unionid string) (_result *arg.GetUse
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }
@@ -192,11 +173,7 @@ func GetAdmin(accessToken string) (_result *arg.GetAdminResult, err error) {
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }
@@ -222,11 +199,7 @@ func GetAdminScope(accessToken string, userid string) (_result *arg.GetAdminScop
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }
@@ -252,11 +225,7 @@ func GetOrgUserCount(accessToken string, onlyActive int) (_result *arg.GetOrgUse
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }
@@ -308,11 +277,7 @@ func ListByPage(accessToken string, departmentId int64, offset *int, size *int, 
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }
@@ -350,11 +315,7 @@ func Simplelist(accessToken string, departmentId int64, offset *int, size *int, 
 	if err != nil {
 		return
 	}
-	if result.Errcode != 0 {
-		err = fmt.Errorf("%s", result.Errmsg)
-		return
-	}
-	log.Println(result)
+
 	_result = &result
 	return
 }

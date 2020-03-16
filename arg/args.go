@@ -1,5 +1,47 @@
 package arg
 
+const (
+	// 获取jsapi ticket
+	GETJSAPITICKETID = iota + 1
+	// 获取企业凭证
+	GETCORPTOKENURLID
+	// 获取第三方凭证
+	GETSUITETOKENURLID
+
+	// 获取用户userid
+	USERGETUSERINFOID
+
+	// 获取用户详情
+	USERGETID
+	// 获取管理员的微应用管理权限
+	USERCANACCESSMICROAPPID
+	// 根据部门id获取员工ID列表
+	USERGETDEPTMEMBERID
+	// 根据unionid获取userid
+	USERGETUSERIDBYUNIONIDID
+	// 获取管理员列表
+	USERGETADMINID
+	// 获取管理员通讯录权限范围
+	USERGETTADMINSCOPRID
+	// 获取企业员工人数
+	USERGETORGUSERCOUNTID
+	// 获取部门用户详情
+	USERLISTBYPAGEID
+	// 获取部门用户
+	USERSIMPLELISTID
+
+	// 获取部门详情
+	DEPARTMENTGETID
+	// 获取部门列表
+	DEPARTMENTLISTID
+	// 获取子部门ID列表
+	DEPARTMENTLISTIDSID
+	// 查询指定用户的所有上级父部门路径
+	DEPARTMENTLISTPARENTDEPTSID
+	// 查询部门的所有上级父部门路径
+	DEPARTMENTLISTPARENTDEPTSBYDEPTID
+)
+
 /*
  * 路径管理
  */
