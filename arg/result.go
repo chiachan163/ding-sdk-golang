@@ -3,8 +3,7 @@ package arg
 import ding_sdk_golang "github.com/chiachan163/ding-sdk-golang"
 
 type GetCorpTokenResult struct {
-	Errcode int32  `json:"errcode"`
-	Errmsg  string `json:"errmsg"`
+	ding_sdk_golang.RespResult
 	// 授权方（企业）corp_access_token
 	AccessToken string `json:"access_token"`
 	// access_token超时时间
