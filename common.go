@@ -37,8 +37,9 @@ func CallDingTalk(corpId string, apiPath int, fn func(corpId string, apiPath int
 			time.Sleep(time.Second)
 			res, rerr = fn(corpId, apiPath)
 		default:
-			return nil
+			rerr = nil
 		}
 	}
+	rerr = fmt.Errorf(res.Errmsg)
 	return rerr
 }
