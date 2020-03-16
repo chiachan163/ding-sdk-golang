@@ -26,6 +26,8 @@ func CallDingTalk(corpId string, apiPath int, fn func(corpId string, apiPath int
 	}
 
 	res, rerr := fn(corpId, apiPath)
+	redis.InrcCallDingTalkAll()
+	redis.InrcCallDingTalkCorpIdApiPath(corpId, apiPath)
 	if res.Errcode == 0 {
 		return nil
 	}
