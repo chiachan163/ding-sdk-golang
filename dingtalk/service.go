@@ -81,3 +81,38 @@ func GetSuiteToken(suiteKey string, suiteSecret string, suiteTicket string) (_re
 	_result = &result
 	return
 }
+
+func GetAuthInfo(suiteKey string, authCorpid string, suiteAccessToken string) (_result *arg.GetAuthInfoResult, err error) {
+	type Body struct {
+		// 授权方ID
+		AuthCorpid string `json:"auth_corpid"`
+		// 第三方应用suite_key
+		SuiteKey string `json:"suite_key"`
+	}
+
+	var result arg.GetAuthInfoResult
+	body := &Body{
+		AuthCorpid: authCorpid,
+		SuiteKey:   suiteKey,
+	}
+	resp, err := ghttp.Request{
+		Url:         fmt.Sprintf("%s?suite_access_token=%s", arg.SERVICEGETAUTHINFO, suiteAccessToken),
+		Body:        body,
+		Method:      "POST",
+		ContentType: "application/json",
+	}.Do()
+	if err != nil {
+		log.Panicln(err)
+	}
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("Request err, status -> %d", resp.StatusCode)
+		return
+	}
+	err = resp.Body.FromToJson(&result)
+	if err != nil {
+		return
+	}
+
+	_result = &result
+	return
+}

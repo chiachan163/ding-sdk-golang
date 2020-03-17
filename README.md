@@ -52,6 +52,11 @@ func main() {
 - 获取第三方凭证 
     - /service/get_suite_token
 ### 应用授权
+- 激活应用 
+- 获取授权应用信息 
+- 获取企业授权信息 
+    - /service/get_auth_info
+- 获取企业永久授权码 
 ### 获取登录身份
 - 获取用户userid 
     - /user/getuserinfo

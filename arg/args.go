@@ -8,6 +8,9 @@ const (
 	// 获取第三方凭证
 	GETSUITETOKENURLID
 
+	// 获取企业授权信息
+	SERVICEGETAUTHINFOID
+
 	// 获取用户userid
 	USERGETUSERINFOID
 
@@ -58,6 +61,11 @@ const (
 )
 
 // 应用授权
+const (
+	// 获取企业授权信息
+	SERVICEGETAUTHINFO = DINGTALK + "/service/get_auth_info"
+)
+
 // 获取登录身份
 const (
 	// 获取用户userid

@@ -96,3 +96,12 @@ type SimplelistResult struct {
 	ding_sdk_golang.RespResult
 	SimpleUserList
 }
+
+type GetAuthInfoResult struct {
+	ding_sdk_golang.RespResult
+	AuthUserInfo    *AuthUserInfo    `json:"auth_user_info"`
+	AuthCorpInfo    *AuthCorpInfo    `json:"auth_corp_info"`
+	ChannelAuthInfo *ChannelAuthInfo `json:"channel_auth_info"`
+	AuthInfo        *AuthInfo        `json:"auth_info"`
+	AuthMarketInfo  *AuthMarketInfo  `json:"auth_market_info"`
+}

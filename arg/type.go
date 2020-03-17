@@ -139,3 +139,73 @@ type SimpleUserList struct {
 	// 在分页查询时返回，true代表还有下一页更多数据
 	HasMore bool `json:"hasMore"`
 }
+
+type (
+	// 授权方管理员信息
+	AuthUserInfo struct {
+		UserId string `json:"userId"`
+	}
+	// 授权方企业信息
+	AuthCorpInfo struct {
+		// 授权方企业id
+		Corpid string `json:"corpid"`
+		// 企业认证等级，0：未认证，1：高级认证，2：中级认证，3：初级认证
+		AuthLevel int `json:"auth_level"`
+		// 渠道码
+		AuthChannel string `json:"auth_channel"`
+		// 企业所属行业
+		Industry     string `json:"industry"`
+		FullCorpName string `json:"full_corp_name"`
+		// 授权方企业名称
+		CorpName string `json:"corp_name"`
+		// 企业邀请链接
+		InviteUrl string `json:"invite_url"`
+		// 渠道类型,为了避免渠道码重复，可与渠道码共同确认渠道（可能为空。非空时当前只有满天星类型，值为STAR_ACTIVITY）
+		AuthChannelType string `json:"auth_channel_type"`
+		// 邀请码，只有自己邀请的企业才会返回邀请码，可用该邀请码统计不同渠道的拉新，否则值为空字符串
+		InviteCode string `json:"invite_code"`
+		// 企业是否认证
+		IsAuthenticated bool `json:"is_authenticated"`
+		// 序列号
+		LicenseCode string `json:"license_code"`
+		// 企业logo
+		CorpLogoUrl string `json:"corp_logo_url"`
+		// 授权企业所在省份
+		CorpProvince string `json:"corp_province"`
+		// 授权企业所在城市
+		CorpCity string `json:"corp_city"`
+	}
+	// 授权的应用信息
+	Agent struct {
+		// 授权方应用id
+		Agentid int64 `json:"agentid"`
+		// 授权方应用名字
+		AgentName string `json:"agent_name"`
+		// 授权方应用头像
+		LogoUrl string `json:"logo_url"`
+		// 应用id
+		Appid int64 `json:"appid"`
+		// 对此微应用有管理权限的管理员userid
+		AdminList []string `json:"admin_list"`
+	}
+	// 授权信息
+	AuthInfo struct {
+		Agent []*Agent `json:"agent"`
+	}
+	ChannelAgent struct {
+		// 授权方应用名字
+		AgentName string `json:"agent_name"`
+		// 授权方应用id
+		Agentid int64 `json:"agentid"`
+		// 应用id
+		Appid int64 `json:"appid"`
+		// 授权方应用头像
+		LogoUrl string `json:"logo_url"`
+	}
+	AuthMarketInfo struct {
+	}
+	// 授权的服务窗应用信息列表
+	ChannelAuthInfo struct {
+		ChannelAgent []*ChannelAgent `json:"channelAgent"`
+	}
+)
