@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/chiachan163/ding-sdk-golang/v1/arg"
+	"github.com/chiachan163/ding-sdk-golang/v2/arg"
 
 	"github.com/swxctx/ghttp"
 )

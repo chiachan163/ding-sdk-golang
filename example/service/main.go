@@ -5,11 +5,11 @@ import (
 	"log"
 	"time"
 
-	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang/v1"
-	"github.com/chiachan163/ding-sdk-golang/v1/arg"
-	"github.com/chiachan163/ding-sdk-golang/v1/dingtalk"
+	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang/v2"
+	"github.com/chiachan163/ding-sdk-golang/v2/arg"
+	"github.com/chiachan163/ding-sdk-golang/v2/dingtalk"
 
-	ding_redis "github.com/chiachan163/ding-sdk-golang/v1/redis"
+	ding_redis "github.com/chiachan163/ding-sdk-golang/v2/redis"
 	"github.com/xiaoenai/tp-micro/v6/model/redis"
 )
 

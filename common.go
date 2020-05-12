@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/chiachan163/ding-sdk-golang/v1/redis"
+	"github.com/chiachan163/ding-sdk-golang/v2/redis"
 )
 
 var ReTryTimes = 5
