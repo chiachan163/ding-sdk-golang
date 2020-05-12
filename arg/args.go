@@ -1,5 +1,8 @@
 package arg
 
+// 请求重试次数
+const TryTime = 2
+
 const (
 	// 获取jsapi ticket
 	GETJSAPITICKETID = iota + 1

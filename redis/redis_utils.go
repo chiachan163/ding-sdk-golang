@@ -66,3 +66,44 @@ func GetCallDingTalkCorpIdApiPath(corpId string, apiPath int) (int64, error) {
 	}
 	return _v, nil
 }
+
+func InrcCallDingTalkApiPath(apiPath int) error {
+	key := fmt.Sprintf(CallDingTalkApiPath, apiPath)
+	if err := GetRedis().Incr(key).Err(); err != nil {
+		return err
+	}
+	// 设置过期时间
+	if err := GetRedis().Expire(key, time.Duration(60)*time.Second).Err(); err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetCallDingTalkApiPath(apiPath int) (int64, error) {
+	key := fmt.Sprintf(CallDingTalkApiPath, apiPath)
+	_v, err := GetRedis().Get(key).Int64()
+	if err != nil && err != redis.Nil {
+		return 0, fmt.Errorf("GetCallDingTalkAll error: %v", err)
+	}
+	return _v, nil
+}
+func InrcCallDingTalkCorpIdSuiteKeyApiPath(corpId string, suiteKey string, apiPath int) error {
+	key := fmt.Sprintf(CallDingTalkCorpIdSuiteKeyApiPath, corpId, suiteKey, apiPath)
+	if err := GetRedis().Incr(key).Err(); err != nil {
+		return err
+	}
+	// 设置过期时间
+	if err := GetRedis().Expire(key, time.Duration(60)*time.Second).Err(); err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetCallDingTalkCorpIdSuiteKeyApiPath(corpId string, suiteKey string, apiPath int) (int64, error) {
+	key := fmt.Sprintf(CallDingTalkCorpIdSuiteKeyApiPath, corpId, suiteKey, apiPath)
+	_v, err := GetRedis().Get(key).Int64()
+	if err != nil && err != redis.Nil {
+		return 0, fmt.Errorf("GetCallDingTalkAll error: %v", err)
+	}
+	return _v, nil
+}
