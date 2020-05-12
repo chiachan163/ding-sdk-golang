@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/chiachan163/ding-sdk-golang/dingtalk"
+	"github.com/chiachan163/ding-sdk-golang/v1/dingtalk"
 )
 
 func main() {

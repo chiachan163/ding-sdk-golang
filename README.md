@@ -6,8 +6,8 @@ import (
 	"log"
 	"time"
 
-	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang"
-	ding_redis "github.com/chiachan163/ding-sdk-golang/redis"
+	ding_sdk_golang "github.com/chiachan163/ding-sdk-golang/v1"
+	ding_redis "github.com/chiachan163/ding-sdk-golang/v1/redis"
 	"github.com/xiaoenai/tp-micro/v6/model/redis"
 )
 

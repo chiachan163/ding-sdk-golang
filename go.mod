@@ -1,4 +1,4 @@
-module github.com/chiachan163/ding-sdk-golang
+module github.com/chiachan163/ding-sdk-golang/v1
 
 go 1.13
 

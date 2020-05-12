@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-redis/redis/v7"
 
-	"github.com/chiachan163/ding-sdk-golang/utils"
+	"github.com/chiachan163/ding-sdk-golang/v1/utils"
 )
 
 func GetCallDingTalkAllKey() (string, error) {

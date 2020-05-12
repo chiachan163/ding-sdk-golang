@@ -1,6 +1,6 @@
 package arg
 
-import ding_sdk_golang "github.com/chiachan163/ding-sdk-golang"
+import ding_sdk_golang "github.com/chiachan163/ding-sdk-golang/v1"
 
 type GetCorpTokenResult struct {
 	ding_sdk_golang.RespResult

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/chiachan163/ding-sdk-golang/redis"
+	"github.com/chiachan163/ding-sdk-golang/v1/redis"
 )
 
 var ReTryTimes = 5
@@ -83,7 +83,7 @@ func CallDingTalk(corpId string, suiteKey *string, apiPath int, fn func(corpId s
 	redis.InrcCallDingTalkAll()
 	redis.InrcCallDingTalkApiPath(apiPath)
 	redis.InrcCallDingTalkCorpIdApiPath(corpId, apiPath)
-	redis.InrcCallDingTalkCorpIdSuiteKeyApiPath(corpId, suiteKey, apiPath)
+	redis.InrcCallDingTalkCorpIdSuiteKeyApiPath(corpId, *suiteKey, apiPath)
 	if res.Errcode == 0 {
 		return nil
 	}
